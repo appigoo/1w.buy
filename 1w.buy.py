@@ -335,7 +335,7 @@ all_signal_types = [
         "📉 Volume-MACD Sell", "📉 EMA10_30賣出", "📉 EMA10_30_40強烈賣出", "📉 看跌吞沒", "📉 烏雲蓋頂",
         "📉 上吊線", "📉 黃昏之星","📈 Low>High", "📈 MACD買入", "📈 EMA買入", "📈 價格趨勢買入", "📈 價格趨勢買入(量)", 
         "📈 價格趨勢買入(量%)", "📈 普通跳空(上)", "📈 突破跳空(上)", "📈 持續跳空(上)", 
-        "📈 衰竭跳空(上)", "📈 連續向上買入", "📈 SMA50上升趨勢", "📈 SMA50_200上升趨勢", 
+        "📈 衰竭跳空(上)", "📈 連續向上買入", "📈 SMA50上升趨勢", "📈 SMA50_200上升趨勢", "📈 HighLow向上突破","📉 HighLow向下突破",
         "📈 新买入信号", "📈 RSI-MACD Oversold Crossover", "📈 EMA-SMA Uptrend Buy", 
         "📈 Volume-MACD Buy", "📈 EMA10_30買入", "📈 EMA10_30_40強烈買入", "📈 看漲吞沒", 
         "📈 錘頭線", "📈 早晨之星","✅ 量價","🔄 新转折点",
@@ -551,6 +551,8 @@ while True:
                 data["Price Change %"] = data["Close"].pct_change().round(4) * 100
                 data["Volume Change %"] = data["Volume"].pct_change().round(4) * 100
                 data["Close_Difference"] = data['Close'].diff().round(2)
+                data["High_Difference"] = data['High'].diff().round(2)
+                data["Low_Difference"] = data['Low'].diff().round(2)
                 
                 data["前5均價"] = data["Price Change %"].rolling(window=5).mean()
                 data["前5均價ABS"] = abs(data["Price Change %"]).rolling(window=5).mean()
@@ -695,6 +697,13 @@ while True:
                             signals.append("📈 SMA50上升趨勢")
                         elif row["Close"] < row["SMA50"] and row["MACD"] < 0:
                             signals.append("📉 SMA50下降趨勢")
+                    ###
+                    if pd.notna(row["High_Difference"]) and pd.notna(row["Low_Difference"]):
+                        if row["High_Difference"] > 0 and row["Low_Difference"] > 0:
+                            signals.append("📈 HighLow向上突破")
+                        elif row["High_Difference"] < 0 and row["Low_Difference"] < 0:
+                            signals.append("📉 HighLow向下突破")
+                    ###        
                     if pd.notna(row["SMA50"]) and pd.notna(row["SMA200"]):
                         if row["Close"] > row["SMA50"] and row["SMA50"] > row["SMA200"] and row["MACD"] > 0:
                             signals.append("📈 SMA50_200上升趨勢")
