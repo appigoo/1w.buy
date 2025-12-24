@@ -1557,10 +1557,10 @@ while True:
 
                 # 显示含异动标记的历史资料（新增列：VWAP, MFI, OBV, VIX, VIX_EMA_Fast, VIX_EMA_Slow）
                 st.subheader(f"📋 歷史資料：{ticker}")
-                display_data = data[["Datetime","Low","High", "Close", "Volume", "Price Change %", 
+                display_data = data[["Datetime","Open","Low","High", "Close", "Volume", "Price Change %", 
                                      "Volume Change %", "📈 股價漲跌幅 (%)", 
-                                     "📊 成交量變動幅 (%)","Close_Difference","Close_N_High", "異動標記",
-                                     "成交量標記", "K線形態", "單根解讀", "VWAP", "MFI", "OBV", "VIX", "VIX_EMA_Fast", "VIX_EMA_Slow"]].tail(15)
+                                     "📊 成交量變動幅 (%)","Close_Difference","Close_N_High","Close_N_Low", "異動標記",
+                                     "成交量標記", "K線形態", "單根解讀", "VIX"]].tail(15)
                 if not display_data.empty:
                     st.dataframe(
                         display_data,
