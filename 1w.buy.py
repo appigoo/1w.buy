@@ -553,8 +553,8 @@ while True:
                 data["Close_Difference"] = data['Close'].diff().round(2)
                 data["High_Difference"] = data['High'].diff().round(2)
                 data["Low_Difference"] = data['Low'].diff().round(2)
-                data["Close_N_High"] = ((data['High']-data['Close'])/data['High'])*100
-                data["Close_N_Low"] = ((data['Close']-data['Low'])/data['Close'])*100
+                data["Close_N_High"] = (data['Close']-data['Low'])/(data['High']-data['Low'])
+                data["Close_N_Low"] = (data['High']-data['Close'])/(data['High']-data['Low'])
                 
                 data["前5均價"] = data["Price Change %"].rolling(window=5).mean()
                 data["前5均價ABS"] = abs(data["Price Change %"]).rolling(window=5).mean()
