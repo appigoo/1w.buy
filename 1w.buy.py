@@ -318,8 +318,8 @@ selected_tickers = [t.strip().upper() for t in input_tickers.split(",") if t.str
 selected_period = st.selectbox("選擇時間範圍", period_options, index=5)
 selected_interval = st.selectbox("選擇資料間隔", interval_options, index=8)
 ###
-HIGH_N_HIGH_THRESHOLD = st.number_input("Close to high", min_value=0.1, max_value=1, value=0.9, step=0.1)
-LOW_N_LOW_THRESHOLD = st.number_input("Close to low", min_value=0.1, max_value=1, value=0.9, step=0.1)
+HIGH_N_HIGH_THRESHOLD = st.number_input("Close to high", min_value=0.1, max_value=1.0, value=0.9, step=0.1)
+LOW_N_LOW_THRESHOLD = st.number_input("Close to low", min_value=0.1, max_value=1.0, value=0.9, step=0.1)
 ###
 PRICE_THRESHOLD = st.number_input("價格異動閾值 (%)", min_value=0.1, max_value=200.0, value=80.0, step=0.1)
 VOLUME_THRESHOLD = st.number_input("成交量異動閾值 (%)", min_value=0.1, max_value=200.0, value=80.0, step=0.1)
