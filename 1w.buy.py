@@ -627,7 +627,7 @@ while True:
                     ###
                     if index > 0 and row["Close_N_High"] >=HIGH_N_HIGH_THRESHOLD:
                         signals.append("📈 HIGH_N_HIGH")
-                    if index > 0 and row["Close_N_Low"] <= LOW_N_LOW_THRESHOLD:
+                    if index > 0 and row["Close_N_Low"] >= LOW_N_LOW_THRESHOLD:
                         signals.append("📉 LOW_N_LOW")
                     ###
                     if index > 0 and row["MACD"] > 0 and data["MACD"].iloc[index-1] <= 0 and row["RSI"] < 50:
