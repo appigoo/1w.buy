@@ -117,6 +117,7 @@ def calculate_signal_success_rate(data):
     data["Next_Close_Higher"] = data["Close"].shift(-1) > data["Close"]
     data["Next_Close_Lower"] = data["Close"].shift(-1) < data["Close"]
     data["Next_High_Higher"] = data["High"].shift(-1) > data["High"]
+    data["Next_Low_Higher"] = data["Low"].shift(-1) > data["Low"]
     data["Next_Low_Lower"] = data["Low"].shift(-1) < data["Low"]
     
     sell_signals = [
