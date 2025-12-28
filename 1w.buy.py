@@ -639,9 +639,9 @@ while True:
                         signals.append("📉 LOW_N_LOW")
                     ###
                     ###
-                    if index > 0 and row["High"] ==data['High_Roll_Max']:
+                    if index > 0 and row["High"] > data['High_Roll_Max'].shift(1):
                         signals.append("📈 突破5K")
-                    if index > 0 and row["Low"] == data['Low_Roll_Min']:
+                    if index > 0 and row["Low"] < data['Low_Roll_Min'].shift(1):
                         signals.append("📉 跌穿5K")
                     ###
                     if index > 0 and row["MACD"] > 0 and data["MACD"].iloc[index-1] <= 0 and row["RSI"] < 50:
