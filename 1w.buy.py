@@ -121,7 +121,7 @@ def calculate_signal_success_rate(data):
     data["Next_Low_Lower"] = data["Low"].shift(-1) < data["Low"]
     
     sell_signals = [
-        "📉 High<Low", "📉 MACD賣出", "📉 EMA賣出", "📉 價格趨勢賣出", "📉 價格趨勢賣出(量)", 
+        "📉 High<Low","📉 跌穿5K", "📉 MACD賣出", "📉 EMA賣出", "📉 價格趨勢賣出", "📉 價格趨勢賣出(量)", 
         "📉 價格趨勢賣出(量%)", "📉 普通跳空(下)", "📉 突破跳空(下)", "📉 持續跳空(下)", 
         "📉 衰竭跳空(下)", "📉 連續向下賣出", "📉 SMA50下降趨勢", "📉 SMA50_200下降趨勢", 
         "📉 新卖出信号", "📉 RSI-MACD Overbought Crossover", "📉 EMA-SMA Downtrend Sell", 
@@ -334,12 +334,12 @@ PERCENTILE_THRESHOLD = st.selectbox("選擇 Price Change %、Volume Change %、V
 REFRESH_INTERVAL = st.selectbox("选择刷新间隔 (秒)", refresh_options, index=refresh_options.index(300))
 #
 all_signal_types = [
-    "📉 High<Low", "📉 MACD賣出", "📉 EMA賣出", "📉 價格趨勢賣出", "📉 價格趨勢賣出(量)", 
+    "📉 High<Low","📉 跌穿5K", "📉 MACD賣出", "📉 EMA賣出", "📉 價格趨勢賣出", "📉 價格趨勢賣出(量)", 
         "📉 價格趨勢賣出(量%)", "📉 普通跳空(下)", "📉 突破跳空(下)", "📉 持續跳空(下)", 
         "📉 衰竭跳空(下)", "📉 連續向下賣出", "📉 SMA50下降趨勢", "📉 SMA50_200下降趨勢", 
         "📉 新卖出信号", "📉 RSI-MACD Overbought Crossover", "📉 EMA-SMA Downtrend Sell", 
         "📉 Volume-MACD Sell", "📉 EMA10_30賣出", "📉 EMA10_30_40強烈賣出", "📉 看跌吞沒", "📉 烏雲蓋頂",
-        "📉 上吊線", "📉 黃昏之星","📈 Low>High", "📈 MACD買入", "📈 EMA買入", "📈 價格趨勢買入", "📈 價格趨勢買入(量)", 
+        "📉 上吊線", "📉 黃昏之星","📈 Low>High","📈 突破5K", "📈 MACD買入", "📈 EMA買入", "📈 價格趨勢買入", "📈 價格趨勢買入(量)", 
         "📈 價格趨勢買入(量%)", "📈 普通跳空(上)", "📈 突破跳空(上)", "📈 持續跳空(上)", 
         "📈 衰竭跳空(上)", "📈 連續向上買入", "📈 SMA50上升趨勢", "📈 SMA50_200上升趨勢", "📈 HighLow向上突破","📉 HighLow向下突破",
         "📈 新买入信号", "📈 RSI-MACD Oversold Crossover", "📈 EMA-SMA Uptrend Buy", 
