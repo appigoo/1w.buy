@@ -542,8 +542,9 @@ while True:
         for ticker in selected_tickers:
             try:
                 stock = yf.Ticker(ticker)
+                time.sleep(1)
                 data = stock.history(period=selected_period, interval=selected_interval).reset_index()
-                #time.sleep(3)
+                time.sleep(3)
 
                 if data.empty or len(data) < 2:
                     st.warning(f"⚠️ {ticker} 無數據或數據不足（期間：{selected_period}，間隔：{selected_interval}），請嘗試其他時間範圍或間隔")
