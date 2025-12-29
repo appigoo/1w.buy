@@ -13,7 +13,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import requests
 import numpy as np  # 新增：用于OBV中的np.sign
-yf.utils.get_json = yf.utils.get_json
+
 st.set_page_config(page_title="股票監控儀表板", layout="wide")
 
 load_dotenv()
