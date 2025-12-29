@@ -101,6 +101,7 @@ def calculate_obv(data):
 def get_vix_data(period, interval):
     vix_ticker = yf.Ticker("^VIX")
     vix_data = vix_ticker.history(period=period, interval=interval).reset_index()
+    time.sleep(3)
     if "Date" in vix_data.columns:
         vix_data = vix_data.rename(columns={"Date": "Datetime"})
     vix_data["VIX Change %"] = vix_data["Close"].pct_change().round(4) * 100
