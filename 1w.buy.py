@@ -318,7 +318,7 @@ st.title("📊 股票監控儀表板（含異動提醒與 Email 通知 ✅）")
 input_tickers = st.text_input("請輸入股票代號（逗號分隔）", value="TSLA, NIO, TSLL, XPEV, META, GOOGL, AAPL, NVDA, AMZN, MSFT, TSM")
 selected_tickers = [t.strip().upper() for t in input_tickers.split(",") if t.strip()]
 selected_period = st.selectbox("選擇時間範圍", period_options, index=5)
-selected_interval = st.selectbox("選擇資料間隔", interval_options, index=8)
+selected_interval = st.selectbox("選擇資料間隔", interval_options, index=10)
 ###
 HIGH_N_HIGH_THRESHOLD = st.number_input("Close to high", min_value=0.1, max_value=1.0, value=0.9, step=0.1)
 LOW_N_LOW_THRESHOLD = st.number_input("Close to low", min_value=0.1, max_value=1.0, value=0.9, step=0.1)
@@ -609,13 +609,11 @@ while True:
                 # 新增：MFI背离检测（预计算列）
                 window = MFI_DIVERGENCE_WINDOW
                 data['Close_Roll_Max'] = data['Close'].rolling(window=window).max()
+                data['MFI_Roll_Max'] = data['MFI'].rolling(window=window).max()
+                data['Close_Roll_Min'] = data['Close'].rolling(window=window).min()
                 ###
                 data['High_Roll_Max'] = data['High'].rolling(window=window).max()
-                ###
-                data['MFI_Roll_Max'] = data['MFI'].rolling(window=window).max()
-                #data['Close_Roll_Min'] = data['Close'].rolling(window=window).min()
-                ###
-                #data['Low_Roll_Min'] = data['Low'].rolling(window=window).min()
+                data['Low_Roll_Min'] = data['Low'].rolling(window=window).min()
                 ###
                 data['MFI_Roll_Min'] = data['MFI'].rolling(window=window).min()
                 data['MFI_Bear_Div'] = (data['Close'] == data['Close_Roll_Max']) & (data['MFI'] < data['MFI_Roll_Max'].shift(1))
@@ -639,9 +637,9 @@ while True:
                     if index > 0 and row["Close_N_Low"] >= LOW_N_LOW_THRESHOLD:
                         signals.append("📉 LOW_N_LOW")
                     ###
-                    #if index > 0 and row["High"] > data['High_Roll_Max'].shift(1):
+                    if index > 0 and row["High"] > data['High_Roll_Max'].shift(1):
                         signals.append("📈 突破5K")
-                    #if index > 0 and row["Low"] < data['Low_Roll_Min'].shift(1):
+                    if index > 0 and row["Low"] < data['Low_Roll_Min'].shift(1):
                         signals.append("📉 跌穿5K")
                     ###
                     if index > 0 and row["MACD"] > 0 and data["MACD"].iloc[index-1] <= 0 and row["RSI"] < 50:
