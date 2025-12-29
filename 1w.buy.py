@@ -413,7 +413,7 @@ telegram_conditions = st.data_editor(
 
 placeholder = st.empty()
 
-@st.cache_data(ttl=200)  # 性能优化：缓存K线形态计算结果，TTL=5分钟
+@st.cache_data(ttl=300)  # 性能优化：缓存K线形态计算结果，TTL=5分钟
 def compute_kline_patterns(data, body_ratio_threshold, shadow_ratio_threshold, doji_body_threshold):
     """缓存K线形态计算"""
     data = data.copy()
@@ -544,7 +544,8 @@ while True:
             try:
                 stock = yf.Ticker(ticker)
                 time.sleep(1)
-                data = stock.history(period=selected_period, interval=selected_interval).reset_index()
+                data = stock.download(period=selected_period, interval=selected_interval).reset_index()
+                #data = stock.history(period=selected_period, interval=selected_interval).reset_index()
                 time.sleep(3)
 
                 if data.empty or len(data) < 2:
