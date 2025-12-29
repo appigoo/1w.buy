@@ -612,9 +612,9 @@ while True:
                 data['High_Roll_Max'] = data['High'].rolling(window=window).max()
                 ###
                 data['MFI_Roll_Max'] = data['MFI'].rolling(window=window).max()
-                data['Close_Roll_Min'] = data['Close'].rolling(window=window).min()
+                #data['Close_Roll_Min'] = data['Close'].rolling(window=window).min()
                 ###
-                data['Low_Roll_Min'] = data['Low'].rolling(window=window).min()
+                #data['Low_Roll_Min'] = data['Low'].rolling(window=window).min()
                 ###
                 data['MFI_Roll_Min'] = data['MFI'].rolling(window=window).min()
                 data['MFI_Bear_Div'] = (data['Close'] == data['Close_Roll_Max']) & (data['MFI'] < data['MFI_Roll_Max'].shift(1))
