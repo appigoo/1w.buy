@@ -629,20 +629,21 @@ while True:
                         signals.append("📈 Low>High")
                     if index > 0 and row["High"] < data["Low"].iloc[index-1]:
                         signals.append("📉 High<Low")
-                    ###
                     if index > 0 and row["Close_N_High"] >=HIGH_N_HIGH_THRESHOLD:
                         signals.append("📈 HIGH_N_HIGH")
                     if index > 0 and row["Close_N_Low"] >= LOW_N_LOW_THRESHOLD:
                         signals.append("📉 LOW_N_LOW")
-                    if index > 0 and row["High"] > data['High_Roll_Max'].shift(1):
-                        signals.append("📈 突破5K")
-                    if index > 0 and row["Low"] < data['Low_Roll_Min'].shift(1):
-                        signals.append("📉 跌穿5K")
-                    ###
+                    
                     if index > 0 and row["MACD"] > 0 and data["MACD"].iloc[index-1] <= 0 and row["RSI"] < 50:
                         signals.append("📈 MACD買入")
                     if index > 0 and row["MACD"] <= 0 and data["MACD"].iloc[index-1] > 0 and row["RSI"] > 50:
                         signals.append("📉 MACD賣出")
+
+                    if index > 0 and row["High"] > data['High_Roll_Max'].shift(1):
+                        signals.append("📈 突破5K")
+                    if index > 0 and row["Low"] < data['Low_Roll_Min'].shift(1):
+                        signals.append("📉 跌穿5K")
+                    
                     if (index > 0 and row["EMA5"] > row["EMA10"] and 
                         data["EMA5"].iloc[index-1] <= data["EMA10"].iloc[index-1] and 
                         row["Volume"] > data["Volume"].iloc[index-1] and row["RSI"] < 50):
