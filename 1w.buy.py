@@ -317,8 +317,8 @@ refresh_options = [30, 60, 90, 144, 150, 180, 210, 240, 270, 300]
 st.title("📊 股票監控儀表板（含異動提醒與 Email 通知 ✅）")
 input_tickers = st.text_input("請輸入股票代號（逗號分隔）", value="TSLA, NIO, TSLL, XPEV, META, GOOGL, AAPL, NVDA, AMZN, MSFT, TSM")
 selected_tickers = [t.strip().upper() for t in input_tickers.split(",") if t.strip()]
-selected_period = st.selectbox("選擇時間範圍", period_options, index=8)
-selected_interval = st.selectbox("選擇資料間隔", interval_options, index=10)
+selected_period = st.selectbox("選擇時間範圍", period_options, index=5)
+selected_interval = st.selectbox("選擇資料間隔", interval_options, index=8)
 ###
 HIGH_N_HIGH_THRESHOLD = st.number_input("Close to high", min_value=0.1, max_value=1.0, value=0.9, step=0.1)
 LOW_N_LOW_THRESHOLD = st.number_input("Close to low", min_value=0.1, max_value=1.0, value=0.9, step=0.1)
