@@ -544,8 +544,8 @@ while True:
             try:
                 stock = yf.Ticker(ticker)
                 time.sleep(1)
-                data = stock.download(period=selected_period, interval=selected_interval).reset_index()
-                #data = stock.history(period=selected_period, interval=selected_interval).reset_index()
+                #data = stock.download(period=selected_period, interval=selected_interval).reset_index()
+                data = stock.history(period=selected_period, interval=selected_interval).reset_index()
                 time.sleep(3)
 
                 if data.empty or len(data) < 2:
